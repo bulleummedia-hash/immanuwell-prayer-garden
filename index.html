@@ -3,98 +3,104 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-<title>임마누웰 | 온라인 기도정원</title>
+<title>임마누웰 · 고요한 기도정원</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#111;font-family:system-ui,-apple-system,"Pretendard","Noto Sans KR",sans-serif;color:#fff}button{font:inherit}.hidden{display:none!important}
-#app{position:fixed;inset:0;background:#111;overflow:hidden}
-.screen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:20;background:linear-gradient(180deg,rgba(9,14,18,.08),rgba(9,12,15,.42)),url('assets/main-reference.jpg') center/cover no-repeat}.panel{width:min(560px,92vw);padding:34px;border-radius:26px;background:rgba(17,18,20,.52);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(15px);box-shadow:0 28px 80px rgba(0,0,0,.42);text-align:center}.panel h1{font-family:Georgia,"Noto Serif KR",serif;font-weight:500;font-size:clamp(46px,8vw,92px);margin:0 0 4px}.panel h2{margin:0 0 8px;font-size:30px}.panel p{line-height:1.8;opacity:.88}.primary{border:0;border-radius:999px;padding:15px 34px;background:#f5e5c2;color:#2a2119;font-weight:800;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.3)}
-.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}.choice{border:1px solid rgba(255,255,255,.18);border-radius:20px;background:rgba(255,255,255,.06);color:#fff;padding:18px;cursor:pointer}.choice.selected{outline:2px solid #f2d79e;background:rgba(242,215,158,.13)}.avatarIcon{width:92px;height:128px;margin:0 auto 10px;position:relative}.head{position:absolute;top:6px;left:20px;width:52px;height:52px;border-radius:50%;background:#d1a17b}.body{position:absolute;left:12px;bottom:0;width:68px;height:78px;border-radius:34px 34px 20px 20px;background:#e9dfcf}.hairM{position:absolute;top:0;left:17px;width:58px;height:28px;border-radius:50% 50% 35% 35%;background:#3c2a22;z-index:3}.hairF{position:absolute;top:0;left:14px;width:64px;height:70px;border-radius:50% 50% 42% 42%;background:#4a3329;z-index:0}.palette{display:flex;gap:12px;justify-content:center;margin:14px 0 22px}.sw{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.45);cursor:pointer}.sw.selected{outline:3px solid #fff;outline-offset:3px}
-#garden{position:absolute;inset:0;overflow:hidden;background:#151515}.scene{position:absolute;inset:-2.5%;background-image:url('assets/main-reference.jpg');background-position:center;background-size:cover;background-repeat:no-repeat;transform:scale(1.055);transition:transform .08s linear,background-position .08s linear;will-change:transform,background-position}.scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,18,.02),rgba(10,12,13,.08) 62%,rgba(0,0,0,.18));pointer-events:none}
-#hotspots{position:absolute;inset:0;z-index:5}.hot{position:absolute;background:transparent;border:0;cursor:pointer;border-radius:24px}.hot:focus-visible{outline:2px solid #fff}.hot.pray{left:61%;bottom:4%;width:13%;height:22%}.hot.bible{left:74%;bottom:4%;width:13%;height:22%}.hot.sit{left:87%;bottom:4%;width:11%;height:22%}.hot.chapel{left:66%;top:13%;width:28%;height:42%}.hot.menu1{left:6%;top:38%;width:18%;height:7%}.hot.menu2{left:6%;top:45%;width:18%;height:7%}.hot.menu3{left:6%;top:52%;width:18%;height:7%}.hot.menu4{left:6%;top:59%;width:18%;height:7%}.hot.music{right:12%;top:3%;width:7%;height:10%}.hot.settings{right:3%;top:3%;width:7%;height:10%}
-#toast{position:absolute;left:50%;bottom:8%;z-index:12;transform:translateX(-50%) translateY(16px);padding:11px 18px;border-radius:999px;background:rgba(18,18,18,.74);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:.25s}.showToast{opacity:1!important;transform:translateX(-50%) translateY(0)!important}
-#bibleModal{position:absolute;inset:0;z-index:40;background:rgba(5,5,6,.72);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:24px}.bookWrap{width:min(940px,94vw);height:min(560px,72vh);position:relative;perspective:1600px}.close{position:absolute;right:0;top:-48px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.35);color:#fff;cursor:pointer}.book{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;background:#6f4e34;padding:12px;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.55)}.page{padding:44px 38px;color:#34291e;background:linear-gradient(90deg,#eee0c7,#fffaf0 14%,#fff9ec 88%,#ead6b5);font-family:Georgia,"Noto Serif KR",serif;line-height:1.9;font-size:18px}.page:first-child{border-radius:9px 2px 2px 9px;border-right:1px solid #d0b88d}.page:last-child{border-radius:2px 9px 9px 2px}.page small{display:block;margin-top:30px;color:#796754}
-#prayerModal{position:absolute;inset:0;z-index:39;background:rgba(5,5,6,.64);backdrop-filter:blur(9px);display:flex;align-items:center;justify-content:center}.prayerCard{width:min(520px,90vw);padding:28px;border-radius:24px;background:rgba(31,27,24,.9);border:1px solid rgba(255,255,255,.18);text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.45)}.prayerCard h3{margin-top:0;font-size:28px}.prayerCard textarea{width:100%;height:140px;resize:none;border:1px solid rgba(255,255,255,.13);border-radius:16px;background:rgba(255,255,255,.06);color:#fff;padding:15px;outline:none}.row{display:flex;gap:10px;justify-content:center;margin-top:16px}.ghost{border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;border-radius:999px;padding:12px 22px;cursor:pointer}
-@media(max-width:760px){.panel{padding:24px}.panel h1{font-size:52px}.scene{inset:-6%;transform:scale(1.12);background-position:58% center}.hot.pray{left:50%;bottom:3%;width:17%}.hot.bible{left:67%;bottom:3%;width:17%}.hot.sit{left:84%;bottom:3%;width:15%}.hot.chapel{left:59%;top:13%;width:38%;height:42%}.hot.menu1,.hot.menu2,.hot.menu3,.hot.menu4{left:3%;width:27%}.bookWrap{height:62vh}.page{font-size:14px;padding:26px 18px}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#090907;color:#f4f0e7;font-family:system-ui,-apple-system,"Pretendard","Noto Sans KR",sans-serif}button{font:inherit}canvas{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}.hidden{display:none!important}
+#veil{position:fixed;inset:0;pointer-events:none;z-index:4;background:radial-gradient(circle at 50% 45%,transparent 20%,rgba(0,0,0,.12) 62%,rgba(0,0,0,.52) 100%),linear-gradient(180deg,rgba(0,0,0,.22),transparent 18%,transparent 76%,rgba(0,0,0,.26));}
+.glass{background:rgba(18,20,18,.56);border:1px solid rgba(255,255,255,.18);box-shadow:0 6px 28px rgba(0,0,0,.28);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+#topbar{position:fixed;z-index:20;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none}.leftTop,.rightTop{display:flex;gap:10px;align-items:center}.pill{height:48px;border-radius:28px;padding:0 17px;display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:-.01em}.place strong{font-size:16px;font-weight:700}.place .sep{width:1px;height:17px;background:rgba(255,255,255,.17)}.place .muted{opacity:.72;font-size:12px}.iconBtn{pointer-events:auto;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.18);color:white;background:rgba(18,20,18,.56);backdrop-filter:blur(15px);font-size:18px}.utility{pointer-events:auto;height:48px;border-radius:28px;padding:0 15px;border:1px solid rgba(255,255,255,.18);color:white;display:flex;align-items:center;gap:15px;background:rgba(18,20,18,.56);backdrop-filter:blur(15px)}.utility span{opacity:.92}.listen{pointer-events:auto;position:absolute;top:58px;right:0;border-radius:24px;border:1px solid rgba(255,255,255,.18);padding:11px 17px;background:rgba(24,35,27,.72);color:#f2f6ed;font-size:13px}
+#bottomActions{position:fixed;z-index:20;left:50%;bottom:20px;transform:translateX(-50%);border-radius:30px;padding:5px;display:flex;pointer-events:auto}.action{border:0;background:transparent;color:#fff;min-width:100px;height:58px;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;opacity:.92}.action:hover{background:rgba(255,255,255,.07)}.action .ico{font-size:20px;line-height:1}.action.active{background:rgba(255,255,255,.08)}
+#hint{position:fixed;z-index:20;right:22px;bottom:22px;font-size:11px;opacity:.7;text-shadow:0 1px 4px #000;pointer-events:none}
+#toast{position:fixed;z-index:40;left:50%;bottom:94px;transform:translateX(-50%);padding:10px 16px;border-radius:20px;font-size:13px;opacity:0;transition:.25s;pointer-events:none}#toast.show{opacity:1}
+#bible{position:fixed;z-index:50;inset:0;background:rgba(5,6,5,.74);display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px)}.bookWrap{width:min(900px,90vw);height:min(560px,76vh);perspective:1600px;position:relative}.book{position:absolute;inset:0;background:#4a3422;border-radius:18px;padding:16px;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 38px 90px rgba(0,0,0,.65)}.page{background:linear-gradient(90deg,#e7dcc4,#fff9e9 12%,#fbf3df 88%,#d9c7a9);color:#352c21;padding:42px 34px;font-family:Georgia,"Noto Serif KR",serif;line-height:1.9}.page:first-child{border-radius:10px 2px 2px 10px;border-right:1px solid #c0ad8f}.page:nth-child(2){border-radius:2px 10px 10px 2px}.bookHead{position:absolute;top:-48px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;font-size:14px}.close{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.3);color:white}.turnPage{position:absolute;right:16px;top:16px;bottom:16px;width:calc(50% - 16px);transform-origin:left center;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.2,.8,.2,1)}.turnPage.flipped{transform:rotateY(-180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;background:linear-gradient(90deg,#fff9e9,#e5d8bd);color:#352c21;padding:42px 34px;font-family:Georgia,"Noto Serif KR",serif;line-height:1.9}.face.back{transform:rotateY(180deg);background:linear-gradient(90deg,#e0d1b4,#fff7e4)}
+#start{position:fixed;z-index:60;inset:0;background:linear-gradient(180deg,rgba(7,8,7,.24),rgba(5,6,5,.56));display:flex;align-items:center;justify-content:center}.startCard{text-align:center;text-shadow:0 5px 25px #000}.startCard small{display:block;letter-spacing:.2em;opacity:.72;margin-bottom:9px}.startCard h1{margin:0;font-family:Georgia,"Noto Serif KR",serif;font-weight:500;font-size:clamp(50px,8vw,96px)}.startCard p{line-height:1.8;opacity:.84}.enter{border:1px solid rgba(255,255,255,.34);border-radius:28px;padding:14px 30px;background:rgba(255,255,255,.1);color:#fff;backdrop-filter:blur(10px)}
+@media(max-width:720px){#topbar{top:10px;left:10px;right:10px}.pill{height:42px;padding:0 12px}.place strong{font-size:14px}.place .muted{display:none}.iconBtn{width:42px;height:42px}.utility{height:42px;padding:0 11px;gap:10px}.utility .extra{display:none}.listen{top:50px;padding:9px 13px}.action{min-width:79px;height:52px}.bookWrap{height:64vh}.page,.face{padding:28px 18px;font-size:14px}#hint{display:none}}
 </style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"}}</script>
 </head>
 <body>
-<div id="app">
-  <section id="title" class="screen">
-    <div class="panel">
-      <div style="font-size:17px;letter-spacing:.08em">오늘도 당신 곁에</div>
-      <h1>임마누웰</h1>
-      <div style="letter-spacing:.08em;margin-bottom:20px">ImmanuWell</div>
-      <p>이곳은 함께 기도하며<br>잠시 머무는 온라인 기도정원입니다.</p>
-      <button id="start" class="primary">정원에 들어가기 →</button>
-    </div>
-  </section>
-
-  <section id="selector" class="screen hidden">
-    <div class="panel">
-      <h2>당신의 모습을 골라주세요</h2>
-      <p>이곳에서는 이름을 말하지 않아도 괜찮아요.</p>
-      <div class="choices">
-        <button class="choice selected" data-gender="male"><div class="avatarIcon"><div class="hairM"></div><div class="head"></div><div class="body"></div></div><b>남자</b></button>
-        <button class="choice" data-gender="female"><div class="avatarIcon"><div class="hairF"></div><div class="head"></div><div class="body"></div></div><b>여자</b></button>
-      </div>
-      <div class="palette"><button class="sw selected" style="background:#e9dfcf"></button><button class="sw" style="background:#93a58d"></button><button class="sw" style="background:#b9857a"></button></div>
-      <button id="enter" class="primary">정원에 들어가기 →</button>
-    </div>
-  </section>
-
-  <main id="garden" class="hidden">
-    <div id="scene" class="scene"></div>
-    <div id="hotspots">
-      <button class="hot pray" aria-label="기도하기"></button>
-      <button class="hot bible" aria-label="말씀 보기"></button>
-      <button class="hot sit" aria-label="앉기"></button>
-      <button class="hot chapel" aria-label="예배당"></button>
-      <button class="hot menu1" aria-label="예배당"></button>
-      <button class="hot menu2" aria-label="기도의 언덕"></button>
-      <button class="hot menu3" aria-label="시냇가"></button>
-      <button class="hot menu4" aria-label="십자가의 길"></button>
-      <button class="hot music" aria-label="음악"></button>
-      <button class="hot settings" aria-label="설정"></button>
-    </div>
-    <div id="toast"></div>
-  </main>
-
-  <div id="bibleModal" class="hidden">
-    <div class="bookWrap">
-      <button id="closeBible" class="close">×</button>
-      <div class="book">
-        <div class="page"><h3>오늘의 말씀</h3><p>수고하고 무거운 짐 진 자들아<br>다 내게로 오라.<br><br>내가 너희를 쉬게 하리라.</p><small>마태복음 11:28</small></div>
-        <div class="page"><h3>잠시 머물러 보세요</h3><p>말씀을 천천히 읽고<br>마음에 머무는 한 문장을<br>조용히 되새겨 보세요.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="prayerModal" class="hidden">
-    <div class="prayerCard">
-      <h3>기도하기</h3>
-      <p style="opacity:.78">지금 마음에 있는 기도를 조용히 적어보세요.</p>
-      <textarea placeholder="기도 내용을 적어주세요"></textarea>
-      <div class="row"><button id="closePrayer" class="ghost">닫기</button><button id="savePrayer" class="primary">기도 남기기</button></div>
-    </div>
-  </div>
+<canvas id="scene"></canvas><div id="veil"></div>
+<div id="topbar">
+  <div class="leftTop"><button class="iconBtn">↪</button><div class="pill place glass"><span>⌂</span><strong>임마누웰</strong><span class="sep"></span><span class="muted">기도정원&nbsp; 52⌄</span></div></div>
+  <div class="rightTop"><div class="utility"><span>♙ <b>52</b></span><span>♬</span><span class="extra">☷</span><span>▣</span></div><button id="listen" class="listen">말씀 듣기</button></div>
 </div>
-<script>
-const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
-$('#start').onclick=()=>{$('#title').classList.add('hidden');$('#selector').classList.remove('hidden')};
-$$('.choice').forEach(b=>b.onclick=()=>{$$('.choice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});
-$$('.sw').forEach(b=>b.onclick=()=>{$$('.sw').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});
-$('#enter').onclick=()=>{$('#selector').classList.add('hidden');$('#garden').classList.remove('hidden')};
-function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('showToast');clearTimeout(window.__tt);window.__tt=setTimeout(()=>el.classList.remove('showToast'),1500)}
-$('.hot.pray').onclick=()=>$('#prayerModal').classList.remove('hidden');
-$('.hot.bible').onclick=()=>$('#bibleModal').classList.remove('hidden');
-$('.hot.sit').onclick=()=>toast('조용히 자리에 앉았습니다.');
-$('.hot.chapel').onclick=()=>toast('예배당 내부 장면은 다음 단계에서 연결합니다.');
-$('.hot.menu1').onclick=()=>toast('예배당');$('.hot.menu2').onclick=()=>toast('기도의 언덕');$('.hot.menu3').onclick=()=>toast('시냇가');$('.hot.menu4').onclick=()=>toast('십자가의 길');
-$('.hot.music').onclick=()=>toast('배경음악 준비 중');$('.hot.settings').onclick=()=>toast('설정');
-$('#closeBible').onclick=()=>$('#bibleModal').classList.add('hidden');
-$('#closePrayer').onclick=()=>$('#prayerModal').classList.add('hidden');
-$('#savePrayer').onclick=()=>{$('#prayerModal').classList.add('hidden');toast('기도를 조용히 남겼습니다.')};
-const scene=$('#scene');let baseX=50,baseY=50;$('#garden').addEventListener('pointermove',e=>{if(innerWidth<760)return;const x=(e.clientX/innerWidth-.5)*2;const y=(e.clientY/innerHeight-.5)*2;scene.style.backgroundPosition=`${50+x*1.2}% ${50+y*.7}%`;scene.style.transform=`scale(1.065) translate(${-x*3}px,${-y*2}px)`});$('#garden').addEventListener('pointerleave',()=>{scene.style.backgroundPosition='center';scene.style.transform='scale(1.055)'});
+<div id="bottomActions" class="glass"><button id="pray" class="action"><span class="ico">♢</span><span>기도</span></button><button id="talk" class="action"><span class="ico">♧</span><span>묵상</span></button><button id="bibleBtn" class="action"><span class="ico">✣</span><span>말씀</span></button></div>
+<div id="hint">바닥 클릭: 이동 · 드래그: 시점 · 휠: 거리</div><div id="toast" class="glass"></div>
+<div id="bible"><div class="bookWrap"><div class="bookHead"><span>오늘의 말씀 · 마태복음 11:28</span><button id="closeBook" class="close">×</button></div><div class="book"><div class="page"><h3>마태복음 11장</h3><p>수고하고 무거운 짐 진 자들아<br>다 내게로 오라.<br><br>내가 너희를 쉬게 하리라.</p></div><div class="page"><h3>잠시 머물러 보세요</h3><p>말씀을 천천히 읽고,<br>마음에 남는 한 문장을<br>조용히 되새겨 보세요.</p></div><div id="turnPage" class="turnPage"><div class="face"><h3>오늘의 말씀</h3><p>“수고하고 무거운 짐 진 자들아<br>다 내게로 오라<br>내가 너희를 쉬게 하리라.”</p><p style="font-size:13px;opacity:.65">페이지를 눌러 넘겨보세요.</p></div><div class="face back"></div></div></div></div></div>
+<div id="start"><div class="startCard"><small>QUIET PRAYER GARDEN</small><h1>임마누웰</h1><p>말하지 않아도 괜찮은 곳.<br>함께 머물며 조용히 기도합니다.</p><button id="enter" class="enter">고요한 정원에 들어가기</button></div></div>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+
+const canvas=document.getElementById('scene');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.72;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0a0b09);scene.fog=new THREE.Fog(0x11120f,18,62);
+const camera=new THREE.PerspectiveCamera(48,1,.1,120);camera.position.set(0,5.3,15.5);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.enablePan=false;controls.target.set(0,1.4,-9);controls.minDistance=6;controls.maxDistance=22;controls.minPolarAngle=.78;controls.maxPolarAngle=1.47;
+
+scene.add(new THREE.HemisphereLight(0xd5c39b,0x13150f,.75));
+const key=new THREE.DirectionalLight(0xffd29a,1.35);key.position.set(-5,11,6);key.castShadow=true;key.shadow.mapSize.set(2048,2048);scene.add(key);
+
+const matWood=new THREE.MeshStandardMaterial({color:0x1c120d,roughness:.58,metalness:.02});
+const matWood2=new THREE.MeshStandardMaterial({color:0x2b1a11,roughness:.65});
+const matStone=new THREE.MeshStandardMaterial({color:0x44443e,roughness:.92});
+const matWall=new THREE.MeshStandardMaterial({color:0x807a69,roughness:1});
+const matCushion=new THREE.MeshStandardMaterial({color:0x2b2d27,roughness:.9});
+const matGold=new THREE.MeshStandardMaterial({color:0xc79a4c,roughness:.32,metalness:.45,emissive:0x5b3515,emissiveIntensity:.18});
+
+function box(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;scene.add(m);return m}
+// floor / stage / back wall
+box(30,.28,42,matWood,0,-.12,-8);box(22,.5,4.4,matWood2,0,.22,-25.2);box(22,10,.35,matWall,0,5,-27.45);
+// pillars and beams
+for(const x of [-10.8,10.8]){for(const z of [8,0,-8,-16,-24]) box(.7,9,.7,matWood2,x,4.4,z)}
+for(const z of [8,0,-8,-16,-24]){box(22.4,.55,.65,matWood2,0,8.3,z);box(20,.38,.45,matWood,0,7.45,z)}
+// roof rafters
+for(let z=9;z>-26;z-=2){const r1=box(12.2,.22,.32,matWood,-5.2,9.3,z);r1.rotation.z=-.16;const r2=box(12.2,.22,.32,matWood,5.2,9.3,z);r2.rotation.z=.16}
+// side walls
+box(.35,6.8,34,matWall,-11.4,4,-8);box(.35,6.8,34,matWall,11.4,4,-8);
+// windows dark inset
+const winMat=new THREE.MeshStandardMaterial({color:0x10150f,roughness:.4,metalness:.1});for(const x of [-11.18,11.18]){for(const z of [2,-6,-14]) box(.08,3.2,4.3,winMat,x,4.3,z)}
+
+// altar wall panel and illuminated cross
+const panelMat=new THREE.MeshStandardMaterial({color:0x251b16,roughness:.78});box(13.8,6.4,.24,panelMat,0,5,-27.12);
+const crossGlow=new THREE.MeshStandardMaterial({color:0xf2cf8a,emissive:0xffb95d,emissiveIntensity:2.4,roughness:.45});box(.55,4.5,.32,crossGlow,0,5.4,-26.82);box(3.1,.55,.32,crossGlow,0,6.15,-26.8);
+const altar=box(7.4,.65,2.2,matWood2,0,.85,-24.8);box(1.5,2.1,.8,matWood2,0,2.15,-25.2);
+// candles / warm lamps
+function lamp(x,y,z){const pole=box(.12,.7,.12,matGold,x,y,z);const glow=new THREE.PointLight(0xffc27a,1.4,6);glow.position.set(x,y+.55,z);scene.add(glow);const s=new THREE.Mesh(new THREE.SphereGeometry(.16,14,10),new THREE.MeshStandardMaterial({color:0xffdf9f,emissive:0xffa632,emissiveIntensity:3}));s.position.set(x,y+.45,z);scene.add(s)}
+[-3.1,3.1].forEach(x=>lamp(x,1.25,-24));
+for(const z of [-19,-11,-3,5]){lamp(-10.1,6.4,z);lamp(10.1,6.4,z)}
+
+// prayer cushions in the exact reference-like rows
+for(let row=0;row<8;row++){const z=4-row*3.15;for(let col=-4;col<=4;col++){const x=col*2.15+(row%2?0.16:0);const c=box(1.34,.16,.86,matCushion,x,.02,z);c.rotation.y=(col%2?-.02:.02)}}
+
+// outside entrance steps foreground
+for(let i=0;i<5;i++) box(11.5-i*.55,.23,1.2,matStone,0,-.03+i*.05,10.2+i*.86);
+
+const loader=new GLTFLoader();let player=null,target=null;let moving=false;
+function recolor(o,color){o.traverse(n=>{if(n.isMesh&&n.material){n.material=n.material.clone();if(n.material.color)n.material.color.lerp(new THREE.Color(color),.18);n.castShadow=true;n.receiveShadow=true}})}
+async function loadAvatar(url,x,z,scale=.82,color=0xe0d8c8){return new Promise(resolve=>loader.load(url,g=>{const o=g.scene;o.position.set(x,.05,z);o.scale.setScalar(scale);recolor(o,color);scene.add(o);resolve(o)},undefined,()=>resolve(null)))}
+function fallbackAvatar(x,z,color=0xd8d0c0){const g=new THREE.Group();const body=new THREE.Mesh(new THREE.CapsuleGeometry(.43,.68,8,16),new THREE.MeshStandardMaterial({color}));body.position.y=.72;const head=new THREE.Mesh(new THREE.SphereGeometry(.48,24,18),new THREE.MeshStandardMaterial({color:0x8f5d42,roughness:.82}));head.position.y=1.7;g.add(body,head);g.position.set(x,0,z);g.traverse(m=>{if(m.isMesh)m.castShadow=true});scene.add(g);return g}
+async function avatar(x,z,gender='male',scale=.82,color=0xe7dfd2){const a=await loadAvatar(`models/avatar_${gender}.glb`,x,z,scale,color);return a||fallbackAvatar(x,z,color)}
+
+// quiet visitors: sparse, reference-like, some on cushions, some standing
+const npcData=[[-4.4,-18],[-2.2,-18],[2.1,-18],[4.3,-18],[-6.5,-14],[0,-14],[6.4,-14],[-4.2,-9],[-1.9,-9],[2.1,-9],[4.4,-9],[-6.3,-4],[-2,-4],[2,-4],[6.2,-4],[-4.2,1],[0,1],[4.2,1]];
+for(let i=0;i<npcData.length;i++){const [x,z]=npcData[i];avatar(x,z,i%3===0?'female':'male',.66,i%4===0?0xe0d6c6:0xd2d4cb).then(o=>{if(o&&i%3!==1){o.rotation.y=Math.PI;o.scale.y*=.82}})}
+
+player=await avatar(0,7.2,'male',.9,0xddd7cc);if(player)player.rotation.y=Math.PI;
+
+const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2(),floorPlane=new THREE.Plane(new THREE.Vector3(0,1,0),0);let down=null;
+renderer.domElement.addEventListener('pointerdown',e=>down={x:e.clientX,y:e.clientY});
+renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down.x,e.clientY-down.y)>7)return;pointer.x=e.clientX/innerWidth*2-1;pointer.y=-(e.clientY/innerHeight)*2+1;raycaster.setFromCamera(pointer,camera);const p=new THREE.Vector3();if(raycaster.ray.intersectPlane(floorPlane,p)){p.x=THREE.MathUtils.clamp(p.x,-8.8,8.8);p.z=THREE.MathUtils.clamp(p.z,-20,8);target=p;moving=true}});
+function movePlayer(dt){if(!player||!moving||!target)return;const d=target.clone().sub(player.position);d.y=0;if(d.length()<.13){moving=false;return}const dir=d.normalize();player.position.addScaledVector(dir,Math.min(2.2*dt,d.length()));player.rotation.y=Math.atan2(dir.x,dir.z)+Math.PI;controls.target.lerp(new THREE.Vector3(player.position.x,1.25,player.position.z-4),.025)}
+
+function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}addEventListener('resize',resize);resize();let last=performance.now();function animate(t){requestAnimationFrame(animate);const dt=Math.min((t-last)/1000,.04);last=t;controls.update();movePlayer(dt);renderer.render(scene,camera)}animate(performance.now());
+
+const toast=document.getElementById('toast');function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(window.__t);window.__t=setTimeout(()=>toast.classList.remove('show'),1800)}
+document.getElementById('enter').onclick=()=>document.getElementById('start').classList.add('hidden');
+document.getElementById('pray').onclick=()=>say('조용히 기도하는 중입니다.');
+document.getElementById('talk').onclick=()=>say('잠시 머물며 묵상해 보세요.');
+const bible=document.getElementById('bible');const openBible=()=>bible.style.display='flex';document.getElementById('bibleBtn').onclick=openBible;document.getElementById('listen').onclick=openBible;document.getElementById('closeBook').onclick=()=>bible.style.display='none';document.getElementById('turnPage').onclick=e=>e.currentTarget.classList.toggle('flipped');
 </script>
-</body>
-</html>
+</body></html>
